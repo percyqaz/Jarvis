@@ -3,6 +3,7 @@
 #Warn
 SendMode Input
 SetCapsLockState, AlwaysOff
+#Include activity.ahk
 #Include drag-windows.ahk
 
 ; WIN-RIGHTCLICK TO ALWAYS-ON-TOP
@@ -17,10 +18,10 @@ LWin & F12::RunWait %ComSpec% /c MultiMonitorTool.exe /LoadConfig "monitorcfg"
 
 ; WINDOWS KEY NEEDS DOUBLE TAP TO WORK AS WINDOWS KEY
 LWin::
-if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 300)
-{
-    Send {LWin down}
-    keywait LWin
-    Send {LWin up}
-}
+	if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 300)
+	{
+		Send {LWin down}
+		keywait LWin
+		Send {LWin up}
+	}
 return

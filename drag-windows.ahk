@@ -205,8 +205,8 @@ DRAGWINDOW:
     if EWD_WinState = 0  ; Only if the window isn't maximized
         SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
 return
-EWD_WatchMouse:
 
+EWD_WatchMouse:
     CoordMode, Mouse
     MouseGetPos, EWD_MouseX, EWD_MouseY
     WinGetPos, EWD_WinX, EWD_WinY,,, ahk_id %EWD_MouseWin%
