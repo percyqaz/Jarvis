@@ -3,6 +3,9 @@
 #Warn
 SendMode Input
 SetCapsLockState, AlwaysOff
+
+Run, hotkeys.ahk
+
 #Include activity.ahk
 #Include drag-windows.ahk
 

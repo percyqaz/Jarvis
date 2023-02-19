@@ -1,2 +1,7 @@
 activity_log.txt
 discord.txt
+**/bin
+**/obj
+**/.vs
+*.png
+.vscode
