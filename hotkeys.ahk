@@ -25,8 +25,8 @@ Menu(options, actions)
 	ToolTip
 }
 
-menu := { "I": "Interlude", "W": "Work" }
-shortcuts := { "I": "interlude", "W": "work" }
+menu := { "I": "Interlude", "W": "Work", "O": "Obsidian" }
+shortcuts := { "I": "interlude", "W": "work", "O": "obsidian" }
 
 interlude:
 submenu := {"D": "Local data", "C": "Changelog", "B": "Build output", "S": "Source code", "L": "Localisation (generated)"}
@@ -56,6 +56,10 @@ return
 
 work:
 Run, C:\Users\percy\Desktop\work
+return
+
+obsidian:
+Run, C:\Users\percy\AppData\Local\Obsidian\Obsidian.exe
 return
 
 ^`::Menu(menu, shortcuts)
