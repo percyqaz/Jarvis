@@ -10,5 +10,5 @@ loop {
     sleep, % interval*1000
 	WinGetActiveTitle, WinTitle
 	FormatTime, CurrentDateTime,, dd-MM-yy HH:mm
-	FileAppend, %CurrentDateTime%`t%WinTitle%`n, activity_log.txt
+	FileAppend, %CurrentDateTime%`t%WinTitle%`n, ../logs/activity_log.txt
 }

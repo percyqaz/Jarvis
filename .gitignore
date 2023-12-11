@@ -1,7 +1,6 @@
-activity_log.txt
-discord.txt
+logs/*.txt
 **/bin
 **/obj
 **/.vs
-*.png
-.vscode
+**/*.png
+**/.vscode
