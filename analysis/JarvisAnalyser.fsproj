@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Analysis.fs" />
+    <Compile Include="Breakdown.fs" />
+    <Compile Include="Timeline.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
