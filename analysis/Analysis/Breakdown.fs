@@ -1,6 +1,7 @@
-﻿namespace Jarvis
+﻿namespace Jarvis.Analysis
 
 open System.Collections.Generic
+open Jarvis
 
 type Breakdown = Dictionary<Activity, int> // int = seconds
 
@@ -33,7 +34,7 @@ module Breakdown =
         output
 
     let print(b: Breakdown) =
-        for k in b.Keys |> Seq.sortBy List.rev |> Seq.truncate 20 do
+        for k in b.Keys |> Seq.sortByDescending (fun k -> b.[k]) |> Seq.truncate 1000 do
             printfn "%-150s | %s" (String.replicate k.Length "  " + String.concat " > " (List.rev k)) (format_seconds b.[k])
 
     let create(slice: Activity array) =

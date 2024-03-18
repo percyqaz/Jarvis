@@ -6,9 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Analysis.fs" />
-    <Compile Include="Breakdown.fs" />
-    <Compile Include="Timeline.fs" />
+    <Compile Include="Activities.fs" />
+    <Compile Include="Analysis\Breakdown.fs" />
+    <Compile Include="Analysis\Timeline.fs" />
+    <Compile Include="Focus\Win32.fs" />
+    <Compile Include="Focus\Rules.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

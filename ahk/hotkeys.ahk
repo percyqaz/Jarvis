@@ -39,11 +39,11 @@ Run, C:\Users\percy\Desktop\Source\YAVSRG\Interlude
 return
 
 interlude_bin:
-Run, C:\Users\percy\Desktop\Source\YAVSRG\Interlude\src\bin\Debug\net7.0
+Run, C:\Users\percy\Desktop\Source\YAVSRG\Interlude\src\bin\Debug\net8.0
 return
 
 interlude_generated_locale:
-Run, C:\Users\percy\Desktop\Source\YAVSRG\Interlude\src\bin\Debug\net7.0\Locale\en_GB.txt
+Run, C:\Users\percy\Desktop\Source\YAVSRG\Interlude\src\bin\Debug\net8.0\Locale\en_GB.txt
 return
 
 interlude_data:

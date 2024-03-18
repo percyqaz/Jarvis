@@ -1,8 +1,11 @@
 ﻿open System
 open System.IO
+open System.Threading
 open System.Globalization
 open System.Linq
 open Jarvis
+open Jarvis.Analysis
+open Jarvis.Focus
 
 let LOGFILE = Path.Combine(Environment.GetFolderPath Environment.SpecialFolder.DesktopDirectory, "Source", "Jarvis", "logs", "activity_log.txt")
 let RAW_LOG = File.ReadAllLines(LOGFILE)
@@ -19,9 +22,10 @@ let LOG =
     RAW_LOG 
     |> Array.map (fun s ->
         let split = s.Split("\t")
-        let timestamp = DateTime.ParseExact(split.[0], "dd-MM-yy HH:mm", CultureInfo.InvariantCulture)
+        let ok, timestamp = DateTime.TryParseExact(split.[0].Trim(), "dd-MM-yy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None)
+        let timestamp = if ok then timestamp else DateTime.Now
         let raw_activity = split.[1]
-        let activity = Analysis.identify raw_activity
+        let activity = Activity.identify raw_activity
         { 
             Timestamp = timestamp
             RawActivity = raw_activity
@@ -29,10 +33,10 @@ let LOG =
         }
     )
 
-// Program
+//// Program
 
 while true do
-    printfn "1. Search by date\n2. Search by name\n"
+    printfn "1. Search by date\n2. Search by name\n3. Everything\n"
     match Console.ReadKey().Key with
     | ConsoleKey.D1 ->
         let date =
@@ -59,6 +63,10 @@ while true do
 
         printfn "----\nTotal time: %s" (Breakdown.format_seconds (10 * matches.Length))
         Console.ReadLine() |> ignore
+    | ConsoleKey.D3 ->
+        Breakdown.create (LOG.Select(fun x -> x.Activity).ToArray())
+        |> Breakdown.print
+        Console.ReadLine() |> ignore
     | _ -> ()
     Console.Clear()
 
@@ -68,3 +76,32 @@ while true do
 //    Timeline.insert_color timeline a.Timestamp a.Activity
 
 //Timeline.render timeline (Path.Combine(Environment.GetFolderPath Environment.SpecialFolder.DesktopDirectory, "Source", "Jarvis", "graphs", "activity-"+date.ToString("dd-MM-yy")+".png"))
+
+let reload_config (path: string) =
+    // if deleted, unload config instead
+    printfn "%s" path
+
+//[<EntryPoint>]
+//let main argv = 
+//    use fsw = new FileSystemWatcher(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Source", "Jarvis", "config"))
+//    fsw.Filter <- "*.txt"
+//    fsw.IncludeSubdirectories <- false
+//    fsw.EnableRaisingEvents <- true
+//    fsw.Created.Add (fun e -> reload_config e.FullPath)
+//    fsw.Changed.Add (fun e -> reload_config e.FullPath)
+//    fsw.Renamed.Add (fun e -> reload_config e.FullPath)
+//    fsw.Deleted.Add (fun e -> reload_config e.FullPath)
+
+//    while true do
+//        Thread.Sleep(TimeSpan.FromSeconds(10.0))
+//        let active_window = InteropHelpers.get_window_title()
+//        let event =
+//            {
+//                Timestamp = DateTime.UtcNow
+//                RawActivity = active_window
+//                Activity = Activity.identify active_window
+//            }
+//        ()
+
+//    Console.ReadLine() |> ignore
+//    0

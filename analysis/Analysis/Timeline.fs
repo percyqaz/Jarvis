@@ -1,8 +1,9 @@
-﻿namespace Jarvis
+﻿namespace Jarvis.Analysis
 
 open System
 open System.Collections.Generic
 open System.Drawing
+open Jarvis
 
 type Timeline = Color array array
 

@@ -2,7 +2,7 @@
 
 type Activity = string list
 
-module Analysis =
+module Activity =
 
     let private postFix2 (sep: string) (input: string) =
         let i = input.LastIndexOf(sep)
